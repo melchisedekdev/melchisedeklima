@@ -359,7 +359,8 @@
 main > section.origins > .piaui-map { z-index:0 !important; opacity:.34; }
 
 /* Keep the primary navigation anchored while the story moves underneath. */
-.site-nav { position:fixed; z-index:50; background:linear-gradient(180deg,#100a18ef 0%,#100a18b8 52%,transparent 100%); }
+.site-nav { position:fixed; z-index:50; isolation:isolate; background:transparent; }
+.site-nav::before { content:""; position:absolute; z-index:-1; inset:0 0 -68px; pointer-events:none; background:linear-gradient(180deg,#100a18fa 0%,#160d22ef 34%,#1b102bc2 62%,#1b102b72 82%,transparent 100%); backdrop-filter:blur(12px); }
 
 /* Every chapter gets an exit runway. The next surface can overlap consistently,
    but only after the reader has passed the final piece of content. */
@@ -445,7 +446,8 @@ main > section.origins > .piaui-map { z-index:0 !important; opacity:.34; }
   main > section[class] { position:relative; top:auto; height:auto; min-height:0; max-height:none; overflow:visible; scroll-margin-top:72px; }
   main > section.opening { min-height:100svh; }
   main > section.origins { overflow-x:clip; }
-  .site-nav { top:0; height:66px; padding:0 var(--pad); gap:14px; background:linear-gradient(180deg,#100a18f5 0%,#100a18d9 78%,#100a18a0 100%); backdrop-filter:blur(12px); }
+  .site-nav { top:0; height:66px; padding:0 var(--pad); gap:14px; background:transparent; }
+  .site-nav::before { inset:0 0 -48px; }
   .monogram { flex:none; font-size:20px; }
   .site-nav .nav-items { position:static; display:flex; min-width:0; flex:1; justify-content:flex-end; gap:clamp(9px,3vw,17px); overflow-x:auto; transform:none; scrollbar-width:none; color:#e2dbe8; font-size:10px; white-space:nowrap; }
   .site-nav .nav-items::-webkit-scrollbar { display:none; }
