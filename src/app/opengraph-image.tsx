@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+export const alt = "Melchisedek Lima — Engenharia de IA, software e segurança";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function OpenGraphImage() { return new ImageResponse(<div style={{ height: "100%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center", padding: "80px", background: "#09070d", color: "#fbf9ff", fontFamily: "sans-serif" }}><div style={{ display: "flex", color: "#a87cff", fontSize: 24, letterSpacing: 5 }}>MEL_ / AI ENGINEERING</div><div style={{ display: "flex", fontSize: 82, fontWeight: 700, marginTop: 30 }}>Tecnologia que<br />move o amanhã.</div><div style={{ display: "flex", width: 550, height: 550, position: "absolute", right: -90, top: 35, borderRadius: "50%", border: "2px solid #8754ff", opacity: 0.7 }} /></div>, { ...size }); }

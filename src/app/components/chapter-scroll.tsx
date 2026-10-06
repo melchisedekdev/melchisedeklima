@@ -22,7 +22,8 @@ export function ChapterScroll() {
     }
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>("main > section"));
-    if (window.innerWidth < 781 || sections.length < 2) {
+    const supportsDesktopWheelNavigation = window.matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)").matches;
+    if (window.innerWidth < 1025 || !supportsDesktopWheelNavigation || sections.length < 2) {
       return () => {
         window.history.scrollRestoration = previousScrollRestoration;
       };

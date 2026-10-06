@@ -81,7 +81,23 @@ const recommendations = [
 const stack = [["Next.js", SiNextdotjs], ["React", SiReact], ["TypeScript", SiTypescript], ["Tailwind", SiTailwindcss], ["Supabase", SiSupabase], ["PostgreSQL", SiPostgresql], ["GitHub", SiGithub]] as const;
 
 export default function Home() {
-  const schema = { "@context": "https://schema.org", "@type": "Person", name: "Melchisedek Lima", jobTitle: "Coordenador de Engenharia de IA", url: "https://melchisedeksl.vercel.app", sameAs: links.map(([, url]) => url), knowsAbout: ["Inteligência Artificial", "Engenharia de Software", "Cibersegurança", "Produtos Digitais"] };
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://melchisedeksl.vercel.app/#melchisedek-lima",
+    name: "Melchisedek Lima",
+    alternateName: "Melky",
+    jobTitle: "Coordenador de Engenharia de IA",
+    description: "Profissional de tecnologia com atuação em Engenharia de IA, desenvolvimento de software, cibersegurança e produtos digitais.",
+    url: "https://melchisedeksl.vercel.app/",
+    image: "https://melchisedeksl.vercel.app/images/melchisedek-hero.png",
+    email: "melchisedeksl@gmail.com",
+    sameAs: links.map(([, url]) => url),
+    worksFor: { "@type": "Organization", name: "Medsafe Brasil" },
+    homeLocation: { "@type": "Place", name: "Teresina, Piauí, Brasil" },
+    knowsAbout: ["Inteligência artificial aplicada", "Engenharia de software", "Cibersegurança", "AI Security", "Liderança técnica", "Produtos digitais"],
+    mainEntityOfPage: "https://melchisedeksl.vercel.app/",
+  };
   return <main>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
     <nav className="site-nav" aria-label="Navegação principal"><a className="monogram" href="#inicio" aria-label="Início">ML<span>.</span></a><div className="nav-items"><a href="#origem">História</a><a href="#jornada">Trajetória</a><a href="#sinal">Presença</a><a href="#contato">Contato</a></div></nav><SectionRail /><ChapterScroll />
