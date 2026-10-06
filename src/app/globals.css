@@ -196,7 +196,7 @@
 .origins-context > div { display:grid; grid-template-columns:142px minmax(0, 1fr); gap:17px; align-items:center; margin-top:18px; }
 .origins-context .origins-photo { width:142px; padding:6px; border-color:#8d69c9; background:#e9e3ed; }
 .origins-context p { margin:0; color:#4d4353; font-size:15px; line-height:1.55; }
-@media (max-width:780px) { .origins > .piaui-map { top:32%; right:-70px; width:520px; }.origins-story aside { min-height:225px; padding:21px 18px; }.origins-context > div { grid-template-columns:118px minmax(0, 1fr); gap:14px; }.origins-context .origins-photo { width:118px; } }
+@media (max-width:780px) { .origins > .piaui-map { top:32%; right:-32px; width:520px; }.origins-story aside { min-height:225px; padding:21px 18px; }.origins-context > div { grid-template-columns:118px minmax(0, 1fr); gap:14px; }.origins-context .origins-photo { width:118px; } }
 
 /* Full-page chapter cadence: long chapters keep their complete reading flow. */
 @media (min-width:1025px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
