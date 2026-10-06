@@ -196,7 +196,7 @@
 .origins-context > div { display:grid; grid-template-columns:142px minmax(0, 1fr); gap:17px; align-items:center; margin-top:18px; }
 .origins-context .origins-photo { width:142px; padding:6px; border-color:#8d69c9; background:#e9e3ed; }
 .origins-context p { margin:0; color:#4d4353; font-size:15px; line-height:1.55; }
-@media (max-width:780px) { .origins > .piaui-map { top:32%; right:-32px; width:520px; }.origins-story aside { min-height:225px; padding:21px 18px; }.origins-context > div { grid-template-columns:118px minmax(0, 1fr); gap:14px; }.origins-context .origins-photo { width:118px; } }
+@media (max-width:780px) { .origins-story aside { min-height:225px; padding:21px 18px; }.origins-context > div { grid-template-columns:118px minmax(0, 1fr); gap:14px; }.origins-context .origins-photo { width:118px; } }
 
 /* Full-page chapter cadence: long chapters keep their complete reading flow. */
 @media (min-width:1025px) and (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
@@ -361,6 +361,8 @@ main > section.origins > .piaui-map { z-index:0 !important; opacity:.34; }
 /* Keep the primary navigation anchored while the story moves underneath. */
 .site-nav { position:fixed; z-index:50; isolation:isolate; background:transparent; }
 .site-nav::before { content:""; position:absolute; z-index:-1; inset:0 0 -16px; pointer-events:none; background:linear-gradient(180deg,#100a18fa 0%,#160d22ef 34%,#1b102bc2 62%,#1b102b72 82%,transparent 100%); backdrop-filter:blur(12px); }
+.nav-toggle { display:none; }
+.nav-item-icon { display:none; }
 
 /* Every chapter gets an exit runway. The next surface can overlap consistently,
    but only after the reader has passed the final piece of content. */
@@ -449,9 +451,13 @@ main > section.origins > .piaui-map { z-index:0 !important; opacity:.34; }
   .site-nav { top:0; height:50px; padding:0 var(--pad); gap:10px; background:transparent; }
   .site-nav::before { inset:0 0 -8px; }
   .monogram { flex:none; font-size:20px; }
-  .site-nav .nav-items { position:static; display:flex; min-width:0; flex:1; justify-content:flex-end; gap:clamp(9px,3vw,17px); overflow-x:auto; transform:none; scrollbar-width:none; color:#e2dbe8; font-size:10px; white-space:nowrap; }
-  .site-nav .nav-items::-webkit-scrollbar { display:none; }
-  .site-nav .nav-items a { flex:none; padding:10px 0; }
+  .site-nav .nav-items { position:absolute; top:calc(100% + 8px); right:var(--pad); display:none; min-width:190px; flex-direction:column; gap:0; padding:7px 16px; border:1px solid #b793ff42; background:#130d1cf5; box-shadow:0 14px 36px #08050e70; color:#e2dbe8; font-size:13px; transform:none; }
+  .site-nav .nav-items.is-open { display:flex; }
+  .site-nav .nav-items a { display:flex; align-items:center; gap:11px; padding:12px 2px; border-bottom:1px solid #f0ebf61c; }
+  .site-nav .nav-items .nav-item-icon { display:block; width:16px; height:16px; color:var(--violet); }
+  .site-nav .nav-items a:last-child { border-bottom:0; }
+  .site-nav .nav-toggle { display:grid; flex:none; width:38px; height:38px; place-items:center; padding:0; border:1px solid #b793ff58; border-radius:50%; background:#171020dd; color:#eee5fa; cursor:pointer; }
+  .site-nav .nav-toggle svg { width:19px; height:19px; }
   .opening { display:flex; min-height:100svh; height:auto; flex-direction:column; align-items:stretch; justify-content:center; padding:100px var(--pad) 76px; }
   .opening-copy { width:100%; }
   .opening h1 { max-width:10ch; margin:22px 0 17px; font-size:clamp(46px,12.2vw,64px); line-height:.88; letter-spacing:-.085em; }
@@ -496,7 +502,7 @@ main > section.origins > .piaui-map { z-index:0 !important; opacity:.34; }
   .origins-context > div { grid-template-columns:minmax(90px,118px) minmax(0,1fr); gap:13px; }
   .origins-context .origins-photo { width:100%; max-width:118px; }
   .origins-context p { font-size:14px; }
-  .origins > .piaui-map { top:38%; right:-44vw; width:125vw; opacity:.12; }
+  .origins > .piaui-map { top:38%; right:-30vw; width:125vw; opacity:.12; }
   .academic-story { grid-template-columns:minmax(0,1fr); gap:24px; margin-top:36px; padding:24px 0; }
   .academic-story blockquote { order:0; }
   .academic-story > div { order:1; }
