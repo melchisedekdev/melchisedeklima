@@ -1,69 +1,99 @@
+import { SiGithub, SiNextdotjs, SiPostgresql, SiReact, SiSupabase, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { LuBookOpen, LuBrainCircuit, LuGraduationCap, LuPanelsTopLeft, LuSchool, LuShieldCheck, LuUsersRound } from "react-icons/lu";
 import Image from "next/image";
+import { PiauiMap } from "./components/piaui-map";
+import { SectionRail } from "./components/section-rail";
+import { ChapterScroll } from "./components/chapter-scroll";
+import { EventCarousel } from "./components/event-carousel";
+
+const links = [["LinkedIn", "https://www.linkedin.com/in/melchisedeksl/"], ["GitHub", "https://github.com/melchisedekdev"], ["Instagram", "https://www.instagram.com/melchisedek.dev/"]];
+const companyLogos: Record<string, string> = {
+  "Medsafe Brasil": "https://media.licdn.com/dms/image/v2/D4E0BAQEQkSubDCAs2g/company-logo_100_100/B4EZwqx95mIMAQ-/0/1770244268078?e=1792627200&v=beta&t=FOCg8ROUScL_CpenUhB4qrYcF56KnCoEbPIQ70Ts2QE",
+  ConfereAI: "https://media.licdn.com/dms/image/v2/D4D0BAQFNngqO5I3nHQ/company-logo_100_100/B4DZjtKbTWGgAQ-/0/1756325590784/domus_fidei_logo?e=1792627200&v=beta&t=_vBj1DoGnp2EQGxjb0iQrwFf8PXTPF_qrLgKKrrDLVs",
+  "Grau Técnico": "https://media.licdn.com/dms/image/v2/C4D0BAQFmR9Cou-AVpw/company-logo_100_100/company-logo_100_100/0/1630532416771/grautecnico_logo?e=1792627200&v=beta&t=IUmI3qNdJqjFat_TotL_HA74P-CX1gv3hLkhAyDpPHg",
+};
+const chapters = [
+  { date: "ago. 2026 — atual", company: "Medsafe Brasil", title: "Coordenador de Engenharia de IA", text: "Assumi a organização técnica e operacional do time: definição de prioridades, acompanhamento das entregas, mentoria e evolução do portfólio de projetos de IA.", mark: "MS" },
+  { date: "jun. 2026 — atual", company: "Medsafe Brasil", title: "Engenheiro de IA & Cibersegurança", text: "Estruturei soluções de IA e automações de processos; também atuei em segurança de APIs, auditorias OWASP e mitigação de riscos em aplicações e agentes baseados em LLMs.", mark: "MS" },
+  { date: "mar. 2026 — jun. 2026", company: "Medsafe Brasil", title: "Desenvolvedor de Software", text: "Assumi o ownership de uma plataforma educacional em produção, modernizei um backend legado e implementei automações e integrações para produtos de saúde e educação.", mark: "MS" },
+  { date: "jan. 2026 — mar. 2026", company: "Medsafe Brasil", title: "Desenvolvedor de Software (Estágio)", text: "Atuei em um sistema governamental de saúde em produção, desenvolvendo APIs com Spring Boot e fluxos em Angular. Uma integração crítica com gateway de pagamentos contribuiu para minha promoção.", mark: "MS" },
+  { date: "ago. 2025 — jan. 2026", company: "ConfereAI", title: "Desenvolvedor de Software · Autônomo", text: "Integrei a engenharia da startup no desenvolvimento de uma aplicação web ligada ao controle de presença por reconhecimento facial, com foco em experiência fluida e desempenho em tempo real.", mark: "CA" },
+  { date: "ago. 2025 — jan. 2026", company: "Grau Técnico", title: "Analista de Sistemas & Instrutor de TI · Temporário", text: "Automatizei processos internos, melhorei plataformas digitais e ministrei conteúdos de IA aplicada às áreas de Enfermagem, Radiologia e Administração.", mark: "GT" },
+  { date: "mai. 2022 — jan. 2026", company: "Freelancer", title: "Desenvolvedor Full Stack · Projetos pessoais, acadêmicos e freelance", text: "Conduzi projetos de ponta a ponta — da arquitetura e modelagem de dados às interfaces, APIs e deploy — incluindo produtos SaaS e modernização de plataformas web.", mark: "FL" },
+];
+const projects = [
+  { number: "01", type: "INICIATIVA", title: "Safe IA Brasil", role: "Criador de conteúdo / Influenciador", period: "JUN. 2026 — ATUAL", text: "Perfil no Instagram (@safeiabrasil) sobre inteligência artificial — notícias, humor, dicas e aprendizado. Sou responsável pela frente de IA aplicada à segurança.", responsibilities: ["Gravação de vídeos para o Instagram", "Cobertura de notícias de IA e segurança", "Dicas para usar IA com segurança"], image: "/images/safeia-brasil-profile.jpg", tags: ["Conteúdo", "IA segura", "Instagram"] },
+  { number: "02", type: "PRODUTO", title: "Finanças a dois", text: "Um produto construído do zero para transformar uma rotina compartilhada em uma experiência financeira mais clara.", tags: ["React", "TypeScript", "Supabase"] },
+  { number: "03", type: "TRABALHO", title: "Medsafe", text: "Onde software, saúde, IA e confiabilidade se encontram em produtos que precisam funcionar no mundo real.", tags: ["Health", "Systems", "AI"] },
+];
+const lenses = [
+  { number: "01", name: "Engenharia", text: "De interfaces e integrações à arquitetura de sistemas, com produto e manutenção como partes da mesma conversa.", icon: LuPanelsTopLeft },
+  { number: "02", name: "IA aplicada", text: "LLMs, automações e sistemas inteligentes tratados como ferramentas de utilidade, não como efeito visual.", icon: LuBrainCircuit },
+  { number: "03", name: "Segurança", text: "Uma prática em aprofundamento: identidade, autorização, aplicações seguras e AI Security.", icon: LuShieldCheck },
+  { number: "04", name: "Liderança", text: "Criar contexto, simplificar decisões e fazer o time avançar junto com a qualidade da entrega.", icon: LuUsersRound },
+];
+const questions = [
+  ["Como tudo começou?", "A tecnologia surgiu primeiro como curiosidade: entender como algo funciona, desmontar problemas e encontrar uma forma mais clara de fazê-los funcionar. Esse impulso segue presente, agora aplicado a produtos, pessoas e sistemas."],
+  ["Como a IA se tornou parte da trajetória?", "A inteligência artificial passou de tema de exploração a campo de atuação. Hoje ela se conecta ao meu trabalho por meio de engenharia, segurança, produto e uma pergunta constante: como criar tecnologia que seja realmente útil?"],
+  ["O que define uma boa entrega?", "Uma entrega boa não termina no deploy. Ela considera quem vai usar, quem vai manter, quais riscos existem e qual mudança concreta ela produz. Clareza também é qualidade técnica."],
+];
+const events = [
+  { type: "PARTICIPAÇÃO", title: "AI Summit Brasil", place: "InRad HCFMUSP · São Paulo, SP", year: "2–3 SET. 2026", description: "Um encontro sobre governança, aplicação prática de IA generativa e arquiteturas emergentes, com debates sobre o impacto da inteligência artificial na saúde e nos negócios.", photo: "", image: "/images/ai-summit-brasil-2026.png", imageAlt: "Melchisedek com participantes no AI Summit Brasil", style: "summit" },
+  { type: "PARTICIPAÇÃO", title: "Piauí Campus Weekend", place: "Centro de Convenções de Teresina · Teresina, PI", year: "10–12 OUT. 2025", description: "Participei da apresentação da startup ConfereAI em um festival dedicado a tecnologia, criatividade e empreendedorismo.", photo: "", image: "/images/campus-weekend-confereai.png", imageAlt: "Melchisedek e a equipe ConfereAI no estande do Piauí Campus Weekend", style: "campus-weekend" },
+  { type: "AGENDA ABERTA", title: "Em breve", place: "Novas participações", year: "EM BREVE", description: "Um espaço reservado para os próximos eventos, encontros e capítulos da trajetória.", photo: "EM BREVE", style: "event-placeholder-b" },
+];
+const ideas = [
+  { label: "ARTIGO · MEDIUM", title: "A IA acelerou o código e os stakeholders aceleraram o prazo", area: "Engenharia de software", url: "https://medium.com/@melchisedeksl/a-ia-acelerou-o-código-e-os-stakeholders-aceleraram-o-prazo-1c5d9713c039", cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*aS2Bmkk8jKKtkHcnKa26OQ.png" },
+  { label: "ARTIGO · MEDIUM", title: "Burnout em TI: o lado oculto da área mais desejada do mercado", area: "Carreira & tecnologia", url: "https://medium.com/@melchisedeksl/burnout-em-ti-o-lado-oculto-da-área-mais-desejada-do-mercado-41f5e58f7515", cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hI85zzFWix57I6ssXpETsA.png" },
+  { label: "ARTIGO · MEDIUM", title: "O desenvolvedor que mente pra crescer — e por que isso não é desonesto", area: "Carreira & desenvolvimento", url: "https://medium.com/@melchisedeksl/o-desenvolvedor-que-mente-pra-crescer-e-por-que-isso-não-é-desonesto-4d38d03d8eba", cover: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*LnYLiU0ysDbvrXXjchiiQA.png" },
+];
+const academicMilestones = [
+  { number: "2023", label: "ENSINO MÉDIO", title: "O começo antes da faculdade", text: "Concluí o ensino médio aos 16 anos. A vontade de entrar na área já existia, mas também a dúvida honesta sobre estar pronto para o ritmo e a profundidade de uma graduação.", icon: LuGraduationCap },
+  { number: "2024", label: "AUTONOMIA", title: "Um ano estudando a ementa", text: "Antes de me matricular, passei um ano percorrendo por conta própria a ementa do curso. Era uma forma de chegar mais preparado — e de descobrir como eu aprendia fora de uma estrutura formal.", icon: LuBookOpen },
+  { number: "2025 — AGORA", label: "GRADUAÇÃO", title: "Quando a teoria encontra a vida real", text: "Entrei na UNINASSAU aos 17 e os três primeiros períodos foram tranquilos. Ao me aproximar do quarto, a turma foi encerrada por contingência; na UNINOVAFAPI, retornei dois períodos e passei a rever parte do percurso. É um capítulo ainda em andamento.", icon: LuSchool },
+];
+const certifications = [
+  { title: "Fundamentos da IA Moderna: Machine Learning, LLMs, IA Generativa e Agentes", issuer: "DIO", date: "jun. 2026" },
+  { title: "Python for AI", issuer: "Virak", date: "jun. 2026" },
+  { title: "Engenharia de Software", issuer: "FIAP", date: "mai. 2026" },
+  { title: "Java Fundamentos", issuer: "FIAP", date: "abr. 2026" },
+];
+const recommendations = [
+  {
+    name: "Allycia Rocha",
+    role: "Software Developer Intern · Medsafe Brasil",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQESj_YHfcX7Pw/profile-displayphoto-scale_100_100/B4EZ4EYSERJAAc-/0/1778189937412?e=1792627200&v=beta&t=XDBp8JpffLJtzAa0CRXlbY-EMvBt7rST4Lqm-ccXvLA",
+    quote: "Melchisedek é um profissional excelente. Desde o início, se destacou pela sua capacidade de entender bem os problemas e identificar os requisitos necessários para construir soluções bem estruturadas...",
+  },
+  {
+    name: "Warney Rego",
+    role: "AI Engineer · Medsafe Brasil",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQHPfCdgbSLY6g/profile-displayphoto-scale_100_100/B4EZvh0UIJGoAg-/0/1769020147099?e=1792627200&v=beta&t=U5mJQ7wvKD1S7bdOaQvpgAISVpG67W03ofKpzXE3kVU",
+    quote: "Melchisedek demonstrou um domínio muito sólido em frontend com Angular, construindo arquiteturas organizadas, escaláveis e fáceis de manter. Também estruturou aplicações complexas com atenção à performance, componentização e integração entre frontend e backend...",
+  },
+  {
+    name: "Gildácio Lopes",
+    role: "Software Developer · Medsafe Brasil",
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQFFXa6_n7CEcw/profile-displayphoto-scale_100_100/B4DZfk4s0oGYAg-/0/1751891760678?e=1792627200&v=beta&t=zpExsOnqA44cxXmPeiOhAPfxZx8XxCD2hFqVxcXphCY",
+    quote: "O Melchisedek é um desenvolvedor Full Stack talentoso e um parceiro de trabalho excelente aqui na Medsafe Brasil. Ele domina tecnologias como Java, Spring, Angular e React, sempre entregando suas tarefas com muita qualidade e maturidade técnica.",
+  },
+];
+const stack = [["Next.js", SiNextdotjs], ["React", SiReact], ["TypeScript", SiTypescript], ["Tailwind", SiTailwindcss], ["Supabase", SiSupabase], ["PostgreSQL", SiPostgresql], ["GitHub", SiGithub]] as const;
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  const schema = { "@context": "https://schema.org", "@type": "Person", name: "Melchisedek Lima", jobTitle: "Coordenador de Engenharia de IA", url: "https://melchisedeksl.vercel.app", sameAs: links.map(([, url]) => url), knowsAbout: ["Inteligência Artificial", "Engenharia de Software", "Cibersegurança", "Produtos Digitais"] };
+  return <main>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+    <nav className="site-nav" aria-label="Navegação principal"><a className="monogram" href="#inicio" aria-label="Início">ML<span>.</span></a><div className="nav-items"><a href="#origem">História</a><a href="#jornada">Trajetória</a><a href="#sinal">Presença</a><a href="#contato">Contato</a></div></nav><SectionRail /><ChapterScroll />
+    <section id="inicio" className="opening" aria-labelledby="opening-title"><div className="opening-grid" aria-hidden="true" /><div className="opening-copy"><p className="kicker">MELCHISEDEK LIMA · TERESINA, BRASIL</p><h1 id="opening-title">Tecnologia<br />com <em>direção</em><br />humana.</h1><p>Engenharia de IA, software e segurança para pessoas e organizações que querem transformar ambição em algo que funciona.</p><div className="opening-actions"><a className="primary-link" href="#origem">Começar pela história <span>↓</span></a><a href="#contato">Iniciar uma conversa</a></div><dl className="opening-status"><div><dt>ATUALMENTE</dt><dd>Coordenação de<br />Engenharia de IA</dd></div><div><dt>FOCO</dt><dd>IA aplicada, produto<br />e segurança</dd></div></dl></div><div className="hero-index"><Image className="hero-portrait" src="/images/melchisedek-hero.png" alt="Retrato editorial de Melchisedek Lima" fill priority sizes="(max-width: 780px) 0px, 32vw" /><span>01</span><p>MELCHISEDEK<br />LIMA</p><i /></div><div className="opening-foot"><span>SCROLL PARA EXPLORAR ↓</span></div><div className="hero-transition" aria-hidden="true" /></section>
+    <section id="origem" className="origins" aria-labelledby="origins-title"><PiauiMap /><header className="section-header"><div className="section-label"><span>01</span> ORIGENS</div><div><h2 id="origins-title"><span>Antes de existir o <strong>Melchisedek Lima</strong>,</span><span>existia o <em>Melkynho.</em></span></h2><p>Uma história de curiosidade, computadores e vontade de voltar para casa o mais rápido possível.</p></div></header><div className="origins-story"><div className="origins-intro"><p className="origins-name">O começo<br /><span>de tudo</span></p></div><div><p>Sou Melchisedek Lima, um menino nordestino nascido no Piauí. Minha relação com tecnologia começou muito antes de qualquer plano de carreira: cresci praticamente em uma lan house do meu tio, jogando, observando computadores e entendendo que havia um mundo inteiro acontecendo atrás de uma tela.</p><p>Na escola, eu sempre tive facilidade com exatas, mas a parte que realmente me chamava era outra: torcer para chegar em casa e voltar para o computador. Foi ali que a paixão por tecnologia deixou de ser passatempo e começou a virar direção.</p></div><aside><div className="origins-context"><span>PIAUÍ, BRASIL</span><div><figure className="origins-photo"><Image src="/images/melkynho-origem.png" alt="Retrato de Melchisedek Lima quando criança" width={1086} height={1448} sizes="(max-width: 780px) 36vw, 150px" /></figure><p>Computadores, jogos, lan house e uma curiosidade que não sabia esperar.</p></div></div></aside></div></section>
+    <section id="jornada" className="journey-new" aria-labelledby="journey-title"><header className="split-heading"><div className="section-label"><span>02</span> A JORNADA</div><h2 id="journey-title">Uma carreira não é uma linha reta.<br />É uma sequência de <em>contextos que expandem.</em></h2></header><div className="journey-layout"><aside className="journey-intro"><figure className="journey-photo"><Image src="/images/melchisedek-journey-v2.png" alt="Retrato ilustrado de Melchisedek Lima em um podcast" width={1448} height={1086} sizes="(max-width: 780px) 100vw, 28vw" /></figure><p>Da formação em tecnologia à coordenação de engenharia de IA, cada capítulo aumentou o repertório, a responsabilidade e a vontade de criar impacto em escala.</p><span>MAI. 2022 — PRESENTE</span></aside><ol className="chapter-list">{chapters.map((chapter, index) => <li key={`${chapter.company}-${chapter.title}`}><div className="chapter-order">{String(index + 1).padStart(2, "0")}</div><div className="company-mark" aria-label={`Logo da ${chapter.company}`}>{companyLogos[chapter.company] ? <img src={companyLogos[chapter.company]} alt="" /> : chapter.mark}</div><article><p>{chapter.date} · {chapter.company}</p><h3>{chapter.title}</h3><span>{chapter.text}</span></article></li>)}</ol></div></section>
+    <section className="academic" id="formacao" aria-labelledby="academic-title"><header className="section-header"><div className="section-label"><span>02</span> FORMAÇÃO ACADÊMICA</div><div><h2 id="academic-title">Aprender sempre foi parte<br />da forma de <em>construir.</em></h2><p>Mais do que listar cursos, esta seção conta como a formação acadêmica e o estudo contínuo criaram a base para os desafios que vieram depois.</p></div></header><div className="academic-story"><blockquote><p><span>“Não esperei estar pronto.</span><span>Fiz até me tornar capaz.”</span></p><cite>— Melchisedek Lima</cite></blockquote><div><p>Quando entrei na faculdade, eu já trabalhava com tecnologia desde os 14/15 anos, em 2021/2022. A diferença entre a dinâmica da sala de aula e a vida real do trabalho apareceu cedo. O curso tem sido, ao mesmo tempo, base, repetição e espaço de reflexão: talvez revisar fundamentos seja tedioso agora; talvez seja algo cujo valor só apareça com o tempo.</p><span>UMA HISTÓRIA AINDA EM ANDAMENTO</span></div></div><div className="academic-grid">{academicMilestones.map((item) => { const Icon = item.icon; return <article key={item.number}><Icon className="academic-watermark" aria-hidden="true" focusable="false" /><p>{item.number} · {item.label}</p><h3>{item.title}</h3><span>{item.text}</span></article>; })}</div><div className="certification-list">{certifications.map((item) => <article key={item.title}><span>{item.issuer}</span><h3>{item.title}</h3><p>Emitido em {item.date}</p></article>)}</div></section>
+    <section id="trabalho" className="work-new" aria-labelledby="work-title" hidden><header className="section-header"><div className="section-label"><span>04</span> TRABALHO SELECIONADO</div><div><h2 id="work-title">O que fica quando<br />a ideia encontra <em>execução.</em></h2><p>Projetos, produtos e iniciativas que mostram uma atuação que vai além do código: problema, contexto, entrega e continuidade.</p></div></header><div className="project-grid">{projects.map((project, index) => <article className={`project project-${index + 1}`} key={project.title}><div className="project-top"><span>{project.number}</span><span>{project.type}</span></div><div className={project.image ? "project-art project-art-image" : "project-art"} aria-hidden="true">{project.image ? <Image className="project-art-image-content" src={project.image} alt="" fill sizes="(max-width: 780px) 100vw, 30vw" /> : <><i /><i /><i /></>}</div><div className="project-copy"><h3>{project.title}</h3>{project.role && <p className="project-role">{project.role}<span>{project.period}</span></p>}<p>{project.text}</p>{project.responsibilities && <ul className="project-responsibilities">{project.responsibilities.map((responsibility) => <li key={responsibility}>{responsibility}</li>)}</ul>}<div>{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div></article>)}</div></section>
+    <section id="perspectivas" className="perspectives" aria-labelledby="perspectives-title"><header className="split-heading"><div className="section-label"><span>04</span> PERSPECTIVAS</div><h2 id="perspectives-title">Uma atuação vista<br />por mais de uma <em>lente.</em></h2></header><div className="lenses">{lenses.map((lens) => { const Icon = lens.icon; return <article key={lens.number}><Icon className="lens-watermark" aria-hidden="true" focusable="false" /><span>{lens.number}</span><h3>{lens.name}</h3><p>{lens.text}</p></article>; })}</div><div className="technology-strip" aria-label="Tecnologias aplicadas">{stack.map(([name, Icon]) => <div key={name}><Icon /><span>{name}</span></div>)}</div></section>
+    <section id="sinal" className="signal" aria-labelledby="signal-title"><header className="section-header"><div className="section-label"><span>05</span> SINAL & PRESENÇA</div><div><h2 id="signal-title">O trabalho também acontece<br />nas conversas que ele <em>provoca.</em></h2><p>Eventos, comunidades, conteúdos e colaborações entram como parte da jornada — não como adereço, mas como troca de repertório.</p></div></header><div className="signal-content"><EventCarousel events={events} /><div className="questions">{questions.map(([question, answer], index) => <details key={question} open={index === 0}><summary><span>{String(index + 1).padStart(2, "0")}</span>{question}<b>+</b></summary><p>{answer}</p></details>)}</div></div></section>
+    <section className="notes" aria-labelledby="notes-title"><header className="section-header"><div className="section-label"><span>06</span> NOTAS DE CAMPO</div><h2 id="notes-title">Ideias em circulação.</h2></header><div className="notes-layout"><div className="idea-list">{ideas.map((idea) => <a className={idea.cover ? "idea-featured" : undefined} href={idea.url ?? "https://www.linkedin.com/in/melchisedeksl/recent-activity/all/"} target="_blank" rel="noreferrer" key={idea.title}>{idea.cover && <Image className="idea-cover" src={idea.cover} alt="" width={1400} height={1400} unoptimized />}<div className="idea-copy"><span>{idea.label}</span><h3>{idea.title}</h3><p>{idea.area}</p></div><b>↗</b></a>)}</div><aside><p className="kicker">AGORA</p><h3>Construindo o próximo capítulo.</h3><p>O foco atual está em liderança de Engenharia de IA, produtos responsáveis, segurança aplicada e iniciativas que conectem pesquisa, negócio e pessoas.</p><a href="#contato">Vamos conversar <span>↗</span></a></aside></div></section>
+    <section className="recommendations" id="recomendacoes" aria-labelledby="recommendations-title"><header className="section-header recommendations-header"><div className="section-label"><span>07</span> OUTRAS VOZES</div><div className="recommendations-header-content"><div className="recommendations-heading-copy"><h2 id="recommendations-title">O trabalho também<br />deixa marcas nas <em>pessoas.</em></h2><p>Palavras de quem acompanhou de perto a colaboração, as entregas e a evolução no time.</p></div><figure className="recommendations-header-photo"><Image src="/images/recommendations-podcast.png" alt="Melchisedek Lima em uma conversa de podcast" width={1647} height={955} sizes="(max-width: 780px) 100vw, 28vw" /></figure></div></header><div className="recommendation-grid">{recommendations.map((recommendation, index) => <article key={recommendation.name}><div className="recommendation-avatar recommendation-placeholder">{String(index + 1).padStart(2, "0")}</div><p className="recommendation-quote">“{recommendation.quote}”</p><footer className="recommendation-person"><Image className="recommendation-avatar" src={recommendation.image} alt={`Foto de ${recommendation.name}`} width={48} height={48} unoptimized /><div><strong>{recommendation.name}</strong><span>{recommendation.role}</span></div></footer></article>)}</div></section>
+    <section id="contato" className="closing" aria-labelledby="closing-title"><p className="section-label"><span>08</span> PRÓXIMO CAPÍTULO</p><h2 id="closing-title">Uma ideia ambiciosa<br />merece uma construção<br /><em>à altura.</em></h2><a className="email" href="mailto:melchisedeksl@gmail.com">melchisedeksl@gmail.com <span>↗</span></a><div className="closing-bottom"><div>{links.map(([label, url]) => <a href={url} target="_blank" rel="noreferrer" key={label}>{label} ↗</a>)}</div><span>© {new Date().getFullYear()} · MELCHISEDEK LIMA</span></div></section>
+  </main>;
 }
