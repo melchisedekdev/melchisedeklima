@@ -82,7 +82,7 @@ const recommendations = [
 const stack = [["Next.js", SiNextdotjs], ["React", SiReact], ["TypeScript", SiTypescript], ["Tailwind", SiTailwindcss], ["Supabase", SiSupabase], ["PostgreSQL", SiPostgresql], ["GitHub", SiGithub]] as const;
 
 export default function Home() {
-  const schema = {
+  const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": "https://melchisedeksl.vercel.app/#melchisedek-lima",
@@ -99,8 +99,28 @@ export default function Home() {
     knowsAbout: ["Inteligência artificial aplicada", "Engenharia de software", "Cibersegurança", "AI Security", "Liderança técnica", "Produtos digitais"],
     mainEntityOfPage: "https://melchisedeksl.vercel.app/",
   };
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://melchisedeksl.vercel.app/#website",
+    name: "Melchisedek Lima",
+    url: "https://melchisedeksl.vercel.app/",
+    inLanguage: "pt-BR",
+    description: "Portfólio de Melchisedek Lima, profissional de Engenharia de IA, software e cibersegurança.",
+    about: { "@id": "https://melchisedeksl.vercel.app/#melchisedek-lima" },
+  };
+  const profilePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": "https://melchisedeksl.vercel.app/#profile",
+    url: "https://melchisedeksl.vercel.app/",
+    name: "Melchisedek Lima | Engenheiro de IA, Software e Cibersegurança",
+    isPartOf: { "@id": "https://melchisedeksl.vercel.app/#website" },
+    mainEntity: { "@id": "https://melchisedeksl.vercel.app/#melchisedek-lima" },
+    inLanguage: "pt-BR",
+  };
   return <main>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify([personSchema, websiteSchema, profilePageSchema]).replace(/</g, "\\u003c") }} />
     <SiteNav /><SectionRail /><ChapterScroll />
     <section id="inicio" className="opening" aria-labelledby="opening-title"><div className="opening-grid" aria-hidden="true" /><div className="opening-copy"><p className="kicker">MELCHISEDEK LIMA · TERESINA, BRASIL</p><h1 id="opening-title">Tecnologia<br />com <em>direção</em><br />humana.</h1><p>Engenharia de IA, software e segurança para pessoas e organizações que querem transformar ambição em algo que funciona.</p><div className="opening-actions"><a className="primary-link" href="#origem">Começar pela história <span>↓</span></a><a href="#contato">Iniciar uma conversa</a></div><dl className="opening-status"><div><dt>ATUALMENTE</dt><dd>Coordenação de<br />Engenharia de IA</dd></div><div><dt>FOCO</dt><dd>IA aplicada, produto<br />e segurança</dd></div></dl></div><div className="hero-index"><Image className="hero-portrait" src="/images/melchisedek-hero.png" alt="Retrato editorial de Melchisedek Lima" fill priority sizes="(max-width: 780px) 0px, 32vw" /><span>01</span><p>MELCHISEDEK<br />LIMA</p><i /></div><div className="opening-foot"><span>SCROLL PARA EXPLORAR ↓</span></div><div className="hero-transition" aria-hidden="true" /></section>
     <section id="origem" className="origins" aria-labelledby="origins-title"><PiauiMap /><header className="section-header"><div className="section-label"><span>01</span> ORIGENS</div><div><h2 id="origins-title"><span>Antes de existir o <strong>Melchisedek Lima</strong>,</span><span>existia o <em>Melkynho.</em></span></h2><p>Uma história de curiosidade, computadores e vontade de voltar para casa o mais rápido possível.</p></div></header><div className="origins-story"><div className="origins-intro"><p className="origins-name">O começo<br /><span>de tudo</span></p></div><div><p>Sou Melchisedek Lima, um menino nordestino nascido no Piauí. Minha relação com tecnologia começou muito antes de qualquer plano de carreira: cresci praticamente em uma lan house do meu tio, jogando, observando computadores e entendendo que havia um mundo inteiro acontecendo atrás de uma tela.</p><p>Na escola, eu sempre tive facilidade com exatas, mas a parte que realmente me chamava era outra: torcer para chegar em casa e voltar para o computador. Foi ali que a paixão por tecnologia deixou de ser passatempo e começou a virar direção.</p></div><aside><div className="origins-context"><span>PIAUÍ, BRASIL</span><div><figure className="origins-photo"><Image src="/images/melkynho-origem.png" alt="Retrato de Melchisedek Lima quando criança" width={1086} height={1448} sizes="(max-width: 780px) 36vw, 150px" /></figure><p>Computadores, jogos, lan house e uma curiosidade que não sabia esperar.</p></div></div></aside></div></section>
